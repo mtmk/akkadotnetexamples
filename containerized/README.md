@@ -1,8 +1,9 @@
 # Akka.Net .Net Core Docker Cluster Example
 
-    sh build_all.sh 
-    docker-compose run
-
+    $ sh build_all.sh 
+    $ docker-compose run
+    (Ctrl-C to stop)
+    
 ## Sample output (edited for clarity)
 
     node1_1  | [akka://acme/user/start] Tick..
@@ -13,14 +14,15 @@
 
 Start the cluster
 
-    docker-compose up -d
+    $ docker-compose up -d
 
 Scale up node2 and 3
 
-    docker-compose scale node2=3 node3=3
+    $ docker-compose scale node2=3 node3=3
 
 Sample output: (notice node2 and 3 are reporting more)
 
+    $ docker-compose logs
     node1_1  | [akka://acme/user/start] Tick..
     node2_1  | [akka://acme/user/task2] [TASK2] Got work to do 30 - Work-23:00:13.9481288
     node2_3  | [akka://acme/user/task2] [TASK2] Got work to do 30 - Work-23:00:13.9481288
