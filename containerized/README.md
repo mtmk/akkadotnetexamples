@@ -33,3 +33,7 @@ Sample output: (notice node2 and 3 are reporting more)
 
     cd seed1
     dotnet run seed1.conf --local
+
+# License
+
+This code is under the MIT License.
