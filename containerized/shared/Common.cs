@@ -15,7 +15,10 @@ namespace shared
 
             StandardOutLogger.UseColors = false;
             var conf = File.ReadAllText(configFile)
-                .Replace("{{OWN_HOST}}", Environment.GetEnvironmentVariable("OWN_HOST") ?? System.Net.Dns.GetHostName())
+                .Replace("{{OWN_HOST}}", Environment.GetEnvironmentVariable("OWN_HOST")
+                                         ?? (Environment.CommandLine.Contains("--local") ?
+                                             "localhost"
+                                             : System.Net.Dns.GetHostName()))
                 .Replace("{{SEED_NODE_HOST}}", Environment.GetEnvironmentVariable("SEED_NODE_HOST") ?? "localhost")
                 .Replace("{{SEED_NODE_PORT}}", Environment.GetEnvironmentVariable("SEED_NODE_PORT") ?? "8080");
             Console.WriteLine(conf);
