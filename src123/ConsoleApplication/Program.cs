@@ -24,6 +24,7 @@ namespace ConsoleApplication
                     }
                   }
                 }
+                akka.cluster.roles = [role-one]
                 ";
 
             var actorSystem = ActorSystem.Create("example", config);
