@@ -4,3 +4,8 @@
     cd ../node1 ; sh build_docker.sh
     cd ../node2 ; sh build_docker.sh
     docker-compose run
+
+Run individual services locally
+
+    cd seed1
+    dotnet run seed1.conf --local
