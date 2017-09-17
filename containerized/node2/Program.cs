@@ -6,11 +6,11 @@ using Akka.Configuration;
 using Akka.Event;
 using shared;
 
-namespace node1
+namespace node2
 {
-    internal static class Program
+    class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Starting..");
 
@@ -23,7 +23,8 @@ namespace node1
             var config = ConfigurationFactory.ParseString(conf);
             var sys = ActorSystem.Create("acme", config);
             
-            sys.ActorOf<StartUp>("startup");
+            // sys.ActorOf<StartUp>("startup");
+            sys.ActorOf<Task2>("task2");
 
             var r = new ManualResetEvent(false);
             Console.CancelKeyPress += (_,e) => { Console.WriteLine("Caught ctrl-c.."); e.Cancel = true; r.Set(); };
@@ -31,11 +32,9 @@ namespace node1
 
             Console.WriteLine("Exiting..");
 
-            CoordinatedShutdown.Get(sys).Run().Wait(TimeSpan.FromSeconds(10));
+            sys.Terminate().Wait();
 
             Console.WriteLine("Bye");
         }
     }
-
-
 }

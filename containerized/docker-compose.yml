@@ -1,0 +1,24 @@
+version: '3'
+services:
+  seed1:
+    image: seed1
+    networks:
+      - nodes_net
+    environment:
+      - SEED_NODE_HOST=seed1
+      - OWN_HOST=seed1
+  node1:
+    image: node1
+    networks:
+      - nodes_net
+    environment:
+      - SEED_NODE_HOST=seed1
+  node2:
+    image: node2
+    networks:
+      - nodes_net
+    environment:
+      - SEED_NODE_HOST=seed1
+networks:
+  nodes_net:
+    driver: bridge
