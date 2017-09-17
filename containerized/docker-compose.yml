@@ -19,6 +19,12 @@ services:
       - nodes_net
     environment:
       - SEED_NODE_HOST=seed1
+  node3:
+    image: node3
+    networks:
+      - nodes_net
+    environment:
+      - SEED_NODE_HOST=seed1
 networks:
   nodes_net:
     driver: bridge

@@ -13,11 +13,15 @@ namespace node1
         public StartUp()
         {
             var task2 = Context.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "task2");
-            int i = 1;
+            var task3 = Context.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "task3");
+            
+            var i = 1;
             Receive<ReceiveTimeout>(t =>
             {
                 _log.Info("Tick..");
-                task2.Tell(new WorkItem { Id = i++, Name = $"Work-{DateTime.Now.TimeOfDay}" });
+                task2.Tell(new WorkItem { Id = i, Name = $"Work-{DateTime.Now.TimeOfDay}" });
+                task3.Tell(new WorkItem { Id = i, Name = $"Work-{DateTime.Now.TimeOfDay}" });
+                i++;
             });
         }
 
